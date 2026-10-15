@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kcfg xmlns="http://www.kde.org/standards/kcfg/1.0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0 http://www.kde.org/standards/kcfg/1.0/kcfg.xsd">
+    <kcfgfile name=""/>
+    <group name="General">
+        <entry name="showMedia" type="Bool"><default>true</default></entry>
+        <entry name="showCalendar" type="Bool"><default>true</default></entry>
+        <entry name="showFocus" type="Bool"><default>true</default></entry>
+        <entry name="showQuickControls" type="Bool"><default>true</default></entry>
+        <entry name="showConnectivity" type="Bool"><default>true</default></entry>
+        <entry name="showSystem" type="Bool"><default>true</default></entry>
+        <entry name="showCpuTemp" type="Bool"><default>true</default></entry>
+        <entry name="showNetworkSpeed" type="Bool"><default>true</default></entry>
+        <entry name="showBattery" type="Bool"><default>true</default></entry>
+        <entry name="showWifiTile" type="Bool"><default>true</default></entry>
+        <entry name="showBluetoothTile" type="Bool"><default>true</default></entry>
+        <entry name="showVolumeControl" type="Bool"><default>true</default></entry>
+        <entry name="showBrightnessControl" type="Bool"><default>true</default></entry>
+        <entry name="glassMode" type="Bool"><default>false</default></entry>
+        <entry name="glassOpacity" type="Int"><default>58</default><min>20</min><max>92</max></entry>
+        <entry name="glassBorderOpacity" type="Int"><default>18</default><min>4</min><max>50</max></entry>
+        <entry name="showMicControl" type="Bool"><default>true</default></entry>
+        <entry name="clock24h" type="Bool"><default>true</default></entry>
+        <entry name="jalaliDefault" type="Bool"><default>true</default></entry>
+        <entry name="compactShowMedia" type="Bool"><default>true</default></entry>
+        <entry name="compactShowClock" type="Bool"><default>true</default></entry>
+        <entry name="showGregorianDate" type="Bool"><default>true</default></entry>
+        <entry name="popupWidth" type="Int"><default>378</default><min>320</min><max>560</max></entry>
+        <entry name="cardRadius" type="Int"><default>14</default><min>4</min><max>28</max></entry>
+        <entry name="focusPreset1" type="Int"><default>15</default><min>1</min><max>180</max></entry>
+        <entry name="focusPreset2" type="Int"><default>25</default><min>1</min><max>180</max></entry>
+        <entry name="focusPreset3" type="Int"><default>50</default><min>1</min><max>180</max></entry>
+    </group>
+</kcfg>

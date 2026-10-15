@@ -1,0 +1,17 @@
+{
+    "KPackageStructure": "Plasma/Applet",
+    "KPlugin": {
+        "Id": "org.oziro.notch",
+        "Name": "Notch",
+        "Description": "Customizable Plasma 6 notch with modular widgets, multi-player media, quick Wi-Fi/Bluetooth/audio/brightness controls, responsive low-latency controls, optional glassmorphism appearance, Jalali calendar, focus timer and live system stats",
+        "Version": "0.7",
+        "Authors": [
+            {
+                "Name": "Oziro"
+            }
+        ],
+        "Category": "Multimedia",
+        "Icon": "preferences-system-time"
+    },
+    "X-Plasma-API-Minimum-Version": "6.0"
+}
