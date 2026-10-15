@@ -3,8 +3,8 @@
     "KPlugin": {
         "Id": "org.oziro.notch",
         "Name": "Notch",
-        "Description": "Customizable Plasma 6 notch with modular widgets, multi-player media, quick Wi-Fi/Bluetooth/audio/brightness controls, responsive low-latency controls, optional glassmorphism appearance, Jalali calendar, focus timer and live system stats",
-        "Version": "0.7",
+        "Description": "Customizable Plasma 6 notch with Jalali, Gregorian and Hijri calendars, media controls, quick controls, system stats and a focus timer",
+        "Version": "0.8.1",
         "Authors": [
             {
                 "Name": "Oziro"

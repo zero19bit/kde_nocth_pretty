@@ -22,8 +22,13 @@
         <entry name="glassBorderOpacity" type="Int"><default>18</default><min>4</min><max>50</max></entry>
         <entry name="showMicControl" type="Bool"><default>true</default></entry>
         <entry name="clock24h" type="Bool"><default>true</default></entry>
+        <entry name="calendarType" type="Int"><default>-1</default><min>-1</min><max>2</max></entry>
+        <entry name="showJalaliDate" type="Bool"><default>false</default></entry>
+        <entry name="showHijriDate" type="Bool"><default>false</default></entry>
+        <entry name="hijriAdjustment" type="Int"><default>0</default><min>-2</min><max>2</max></entry>
         <entry name="jalaliDefault" type="Bool"><default>true</default></entry>
         <entry name="compactShowMedia" type="Bool"><default>true</default></entry>
+        <entry name="compactShowDate" type="Bool"><default>false</default></entry>
         <entry name="compactShowClock" type="Bool"><default>true</default></entry>
         <entry name="showGregorianDate" type="Bool"><default>true</default></entry>
         <entry name="popupWidth" type="Int"><default>378</default><min>320</min><max>560</max></entry>

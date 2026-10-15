@@ -41,13 +41,13 @@ Rectangle {
         ColumnLayout {
             Layout.fillWidth: true
             spacing: 0
-            PC3.Label {
+            PC3.Label { textFormat: Text.PlainText;
                 Layout.fillWidth: true
                 text: tile.title
                 font.weight: Font.Medium
                 elide: Text.ElideRight
             }
-            PC3.Label {
+            PC3.Label { textFormat: Text.PlainText;
                 Layout.fillWidth: true
                 visible: tile.subtitle.length > 0
                 text: tile.subtitle

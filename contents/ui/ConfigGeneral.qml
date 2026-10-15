@@ -2,8 +2,9 @@ import QtQuick
 import QtQuick.Controls as Controls
 import QtQuick.Layouts
 import org.kde.kirigami as Kirigami
+import org.kde.kcmutils as KCM
 
-Kirigami.ScrollablePage {
+KCM.SimpleKCM {
     id: page
 
     property alias cfg_showMedia: showMedia.checked
@@ -24,8 +25,13 @@ Kirigami.ScrollablePage {
     property alias cfg_glassOpacity: glassOpacity.value
     property alias cfg_glassBorderOpacity: glassBorderOpacity.value
     property alias cfg_clock24h: clock24h.checked
-    property alias cfg_jalaliDefault: jalaliDefault.checked
+    property bool cfg_jalaliDefault: true // Legacy preference used until a calendar is selected.
+    property alias cfg_calendarType: calendarSetting.value
+    property alias cfg_showJalaliDate: showJalaliDate.checked
+    property alias cfg_showHijriDate: showHijriDate.checked
+    property alias cfg_hijriAdjustment: hijriAdjustment.value
     property alias cfg_compactShowMedia: compactShowMedia.checked
+    property alias cfg_compactShowDate: compactShowDate.checked
     property alias cfg_compactShowClock: compactShowClock.checked
     property alias cfg_showGregorianDate: showGregorianDate.checked
     property alias cfg_popupWidth: popupWidth.value
@@ -34,8 +40,22 @@ Kirigami.ScrollablePage {
     property alias cfg_focusPreset2: focusPreset2.value
     property alias cfg_focusPreset3: focusPreset3.value
 
+    // Plasma also listens to this signal. Explicit notifications keep the new
+    // settings detectable when upgrading an applet with an older cached schema.
+    // The shell must still be reloaded once after an upgrade to save new keys.
+    signal configurationChanged()
+    onCfg_calendarTypeChanged: configurationChanged()
+    onCfg_showJalaliDateChanged: configurationChanged()
+    onCfg_showHijriDateChanged: configurationChanged()
+    onCfg_hijriAdjustmentChanged: configurationChanged()
+    onCfg_compactShowDateChanged: configurationChanged()
+
+    QtObject {
+        id: calendarSetting
+        property int value: -1
+    }
+
     ColumnLayout {
-        width: page.availableWidth
         spacing: Kirigami.Units.largeSpacing
 
         Kirigami.Heading { text: "Visible modules"; level: 3 }
@@ -94,8 +114,31 @@ Kirigami.ScrollablePage {
         Kirigami.Separator { Layout.fillWidth: true }
         Kirigami.Heading { text: "Clock & calendar"; level: 3 }
         Controls.CheckBox { id: clock24h; text: "Use 24-hour clock" }
-        Controls.CheckBox { id: jalaliDefault; text: "Open calendar in Jalali mode" }
-        Controls.CheckBox { id: showGregorianDate; text: "Show Gregorian date under Persian date" }
+        Controls.Label { text: "Primary calendar / تقویم اصلی" }
+        Controls.ComboBox {
+            id: calendarSelector
+            objectName: "primaryCalendarSelector"
+            Layout.fillWidth: true
+            model: ["شمسی — Jalali", "میلادی — Gregorian", "قمری — Hijri (civil)"]
+            currentIndex: page.cfg_calendarType < 0 ? (page.cfg_jalaliDefault ? 0 : 1) : page.cfg_calendarType
+            onActivated: (index) => {
+                page.cfg_calendarType = index
+            }
+        }
+        Controls.Label { text: "Also show below the primary date:" }
+        Controls.CheckBox { id: showJalaliDate; text: "شمسی — Jalali" }
+        Controls.CheckBox { id: showGregorianDate; text: "میلادی — Gregorian" }
+        Controls.CheckBox { id: showHijriDate; text: "قمری — Hijri" }
+        RowLayout {
+            Controls.Label { text: "Hijri day adjustment / اصلاح روز قمری" }
+            Controls.SpinBox { id: hijriAdjustment; from: -2; to: 2; editable: true }
+        }
+        Controls.Label {
+            Layout.fillWidth: true
+            wrapMode: Text.WordWrap
+            text: "Hijri uses the calculated civil calendar. Local moon-sighting dates may differ; use the day adjustment to match your local calendar."
+            color: Kirigami.Theme.disabledTextColor
+        }
 
         GridLayout {
             columns: 2
@@ -108,6 +151,7 @@ Kirigami.ScrollablePage {
         Kirigami.Separator { Layout.fillWidth: true }
         Kirigami.Heading { text: "Panel pill"; level: 3 }
         Controls.CheckBox { id: compactShowMedia; text: "Show current media" }
+        Controls.CheckBox { id: compactShowDate; text: "Show date / نمایش تاریخ در پنل" }
         Controls.CheckBox { id: compactShowClock; text: "Show clock" }
 
         Kirigami.Separator { Layout.fillWidth: true }

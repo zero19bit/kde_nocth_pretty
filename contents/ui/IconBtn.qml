@@ -1,21 +1,27 @@
 import QtQuick
+import QtQuick.Controls as Controls
+import org.kde.plasma.components as PC3
 import org.kde.kirigami as Kirigami
 
-Item {
+PC3.ToolButton {
     id: b
-    property alias source: ic.source
+    property string source: ""
     property real size: Kirigami.Units.iconSizes.small
-    signal clicked()
-
+    readonly property string accessibleLabel: {
+        const labels = { "media-skip-backward": "Previous track", "media-skip-forward": "Next track",
+            "media-playback-pause": "Pause", "media-playback-start": "Play", "configure": "Settings",
+            "go-previous": "Previous", "go-next": "Next", "dialog-close": "Dismiss message",
+            "audio-volume-muted": "Unmute", "audio-volume-high": "Mute" }
+        return labels[source] || source
+    }
     implicitWidth: size + 8
     implicitHeight: size + 8
-
-    Rectangle {
-        anchors.fill: parent; radius: width / 2
-        color: Kirigami.Theme.textColor
-        opacity: ma.pressed ? 0.25 : (ma.containsMouse ? 0.14 : 0)
-        Behavior on opacity { NumberAnimation { duration: 120 } }
-    }
-    Kirigami.Icon { id: ic; anchors.centerIn: parent; width: b.size; height: b.size; color: Kirigami.Theme.textColor }
-    MouseArea { id: ma; anchors.fill: parent; hoverEnabled: true; onClicked: b.clicked() }
+    icon.name: source
+    icon.width: size
+    icon.height: size
+    text: accessibleLabel
+    display: Controls.AbstractButton.IconOnly
+    Accessible.name: accessibleLabel
+    Controls.ToolTip.visible: hovered
+    Controls.ToolTip.text: accessibleLabel
 }
